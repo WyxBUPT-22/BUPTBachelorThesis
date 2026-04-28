@@ -1,0 +1,52 @@
+\chapter{正文元素示例}
+
+\section{公式示例}
+
+设接收信号为 $y=x+n$，其中 $n$ 为加性高斯白噪声，则对数似然比可写为
+
+\begin{equation}
+LLR = \frac{2y}{\sigma^2}
+\end{equation}
+
+其中，$y$ 表示接收符号，$\sigma^2$ 表示噪声方差。该类公式可用于演示编号、对齐以及文中引用方式。
+
+\section{表格示例}
+
+表\ref{tab:sample_params} 给出了一个简单的参数表示例。
+
+\begin{bupttable}{示例参数表}{tab:sample_params}
+    \begin{tabular}{@{}p{3cm} p{3cm} p{6cm}@{}}
+        \toprule
+        参数名称 & 取值 & 说明 \\
+        \midrule
+        码长 $N$ & 1024 & 示例中使用的块长度 \\
+        码率 $R$ & 0.5 & 示例中使用的码率 \\
+        信道模型 & AWGN & 加性高斯白噪声信道 \\
+        \bottomrule
+    \end{tabular}
+\end{bupttable}
+
+\section{图示例}
+
+图\ref{fig:sample_flow} 展示了一个简单的流程示意图。
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{tikzpicture}[
+        node distance=5mm and 8mm,
+        box/.style={draw, rounded corners=2pt, align=center, minimum width=2.4cm, minimum height=0.9cm, font=\wuhao},
+        line/.style={-{Latex[length=2mm]}, thick}
+    ]
+        \node[box] (a) {输入};
+        \node[box, right=of a] (b) {处理};
+        \node[box, right=of b] (c) {输出};
+        \draw[line] (a) -- (b);
+        \draw[line] (b) -- (c);
+    \end{tikzpicture}
+    \caption{示例流程图}
+    \label{fig:sample_flow}
+\end{figure}
+
+\section{本章小结}
+
+本章展示了公式、表格和图在模板中的基本书写方式，可作为后续撰写实际论文时的参考。

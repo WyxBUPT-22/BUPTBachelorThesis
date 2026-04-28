@@ -39,6 +39,24 @@
 - [官方地址](https://cn.overleaf.com)
 - [BYRIO校内服务](https://overleaf.byrio.work) （如果在校外无法访问可以使用webvpn）
 
+## 当前版本说明
+
+本工作区中的模板已经按 `2026` 届 `docx` 模板要求做了主体化调整，默认只保留论文主体相关内容：
+
+- 可选导入 `cover.pdf` 和 `statement.pdf`
+- 中英文摘要与关键词
+- 目录
+- 五章正文结构示例
+- 参考文献、致谢、附录、创新成果
+
+以下往届模板中的内容已从默认编译流程中移除：任务书、成绩评定表、开题报告、中期检查表、教师指导记录表、外文资料原文、外文译文。
+
+## 推荐先读
+
+- 详细说明文档：`TEMPLATE_2026_GUIDE.md`
+- `docs/README.md`：说明如何自行放入封面与诚信声明 PDF
+- `opencode-example.json`：OpenCode 示例配置，适合作为 coding-agent 工作流的参考
+
 ## 如何使用
 
 [使用手册](https://github.com/BYRIO/BUPTBachelorThesis/tree/master/guidebook)
@@ -50,8 +68,8 @@
 - abstract.cfg:   
     包含了论文的中英文摘要
 - main.tex:   
-    论文的主体、附录、外文译文，目前填充的是示例，对照生成的PDF熟悉代码
-- bib.ref:   
+    论文主体的主文件，包含五章正文、参考文献、致谢、附录和创新成果示例
+- ref.bib:   
     论文的参考文献库
 
 ### 用素材填充以下文件夹
@@ -59,8 +77,8 @@
 - pictures:  
     将图片放入该文件夹
 - docs:   
-    将封面（cover）、诚信声明（statement）、外文文献原文（translation）、任务书（task）、成绩评定表（scoreTable）、开题报告（openingReport）和中期检查表（interimReport）的PDF放入该文件夹。  
-    为了保持清晰度，请在从Word输出PDF时尽可能选择**高质量**的设置（修正官方缺陷的封面及其他材料的word版已放入该文件夹，编辑并保存为PDF即可）
+    如需保留首页，可将封面（cover）和诚信声明/授权说明（statement）的 PDF 放入该文件夹。  
+    为了保持清晰度，请在从 Word 导出 PDF 时尽可能选择**高质量**设置。
 
 教务处官方相关模板请访问 [官方网站](https://jwc.bupt.edu.cn/info/1220/2479.htm) 
 在 TeXworks/Overleaf 中编译main.tex即可，main.pdf即最终输出。
