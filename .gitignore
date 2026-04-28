@@ -31,5 +31,12 @@
 ## VS Code
 .vscode/
 
+## Optional frontmatter PDFs exported by users
+docs/*.pdf
+docs/*.docx
+
+## Generated sample PDF
+main.pdf
+
 ## macOS
 .DS_Store

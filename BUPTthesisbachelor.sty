@@ -6,29 +6,53 @@
 %   to use, modify, copy, or redistribute it subject to the terms  %
 %   and conditions of the GNU General Public License version 2.    %
 %                                                                  %
-%   This program is distributed in the hope that it will be        %
-%   useful, but WITHOUT ANY WARRANTY; without even the implied     %
-%   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR        %
-%   PURPOSE. See the GNU General Public License for more details.  %
-%                                                                  %
-%   You should have received a copy of the GNU General Public      %
-%   License along with this program; if not, write to the Free     %
-%   Software Foundation, Inc., 51 Franklin Street, Fifth Floor,    %
-%   Boston, MA 02110-1301, USA.                                    %
-%                                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%
-\usepackage{ctex} % invole CJKfntef
+\usepackage{ctex}
 \usepackage{xeCJKfntef}
-\usepackage{setspace} % spacing
-\usepackage{xcolor}   % color
-\usepackage{xltxtra}  % print a XeLaTeX
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage[
+    xetex,
+    pdfstartview=FitH,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksdepth=2,
+    colorlinks=true,
+    pdfborder={0 0 1},
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black
+]{hyperref}
+\usepackage[perpage]{footmisc}
+\usepackage{indentfirst}
+\usepackage{titletoc}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage[position=t, singlelinecheck=off]{subfig}
+\usepackage{array, booktabs, multirow}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{amsmath, delarray, mathtools}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage[final]{pdfpages}
+\usepackage[inline]{enumitem}
+\usepackage{etoolbox}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, shapes.misc}
 
 % Font family
 \setmainfont[Mapping=tex-text]{Times New Roman}
 
-% Font size
+% Font size helpers
 \newcommand{\chuhao}{\zihao{0}}
 \newcommand{\xiaochuhao}{\zihao{-0}}
 \newcommand{\yihao}{\zihao{1}}
@@ -45,78 +69,69 @@
 \newcommand{\xiaoliuhao}{\zihao{-6}}
 \newcommand{\qihao}{\zihao{7}}
 \newcommand{\bahao}{\zihao{8}}
-% Normal font size is XiaosiHao
+
+% Body font defaults
 \renewcommand{\normalsize}{\xiaosihao\songti\normalfont}
 
-% Serveral Font pre-setting
-\newcommand{\thesistitlefont}{\centering\heiti\sanhao\textbf} %论文题目的字体
-\newcommand{\thesistitleenfont}{\centering\sanhao\bf}     %论文英文题目的字体
-\newcommand{\covernamefont}{\heiti\yihao\bf}    % 封面上“本科论文”字样的字体
-\newcommand{\coveritemsfont}{\songti\sanhao\bf} % 封面上姓名等条目的字体
-\newcommand{\coverdatefont}{\songti\sanhao\bf}  % 封面上的日期的字体
-\newcommand{\statetitlefirst}{\songti\xiaosanhao\bf}   %诚信声明标题第一行的字体
-\newcommand{\statetitlesecond}{\songti\xiaosanhao\bf}  %诚信声明标题第二行的字体
-\newcommand{\abszhname}{\heiti\xiaosanhao\textbf}         % 中文“摘要”字样的字体
-\newcommand{\abszhkey}{\heiti\xiaosihao\textbf}       % 中文摘要“关键字”字样的字体
-\newcommand{\abszhkeys}{\songti\xiaosihao\normalfont} % 中文摘要关键字的字体
-\newcommand{\absenname}{\xiaosanhao\textbf}               % 英文``Abstract''字样的字体
-\newcommand{\absenkey}{\xiaosihao\textbf}                 % 英文``KEY WORDS''字样的字体
-\newcommand{\absenkeys}{\xiaosihao\normalfont}        % 英文关键字的字体
-\newcommand{\headfont}{\songti\xiaowuhao\normalfont}             % 页眉字体
-\newcommand{\toctitlefont}{\heiti\sanhao\textbf}            % “目录”字样的字体
-\newcommand{\tocchapterfont}{\heiti\xiaosihao} % 目录上第X章的字体
-\newcommand{\tocsectionfont}{\songti\xiaosihao\normalfont}         % 目录上X.Y节的字体
-\newcommand{\tocsubsectionfont}{\songti\xiaosihao\normalfont}      % 目录上X.Y.Z小节的字体
-\newcommand{\tocsubsubsectionfont}{\songti\xiaosihao\normalfont}      % 目录上X.Y.Z.A小节的字体
-\newcommand{\textchapterfont}{\centering\heiti\sanhao\bfseries} % 正文上第X章的字体
-\newcommand{\textsectionfont}{\heiti\sihao\bfseries}            % 正文上X.Y节的字体
-\newcommand{\textsubsectionfont}{\heiti\xiaosihao\bfseries}     % 正文上X.Y.Z小节的字体
-\newcommand{\textsubsubsectionfont}{\heiti\xiaosihao\bfseries}     % 正文上X.Y.Z.A小节的字体
-\newcommand{\footnotefont}{\songti\xiaowuhao\normalfont}     % 脚注字体
-%\newcommand{\ftcaptionfont}{\kaishu\wuhao\normalfont}         % 图表标题的字体
-\newcommand{\ftcaptionfont}{\kaishu\wuhao}         % 图表标题的字体
-\newcommand{\reftitlefont}{\heiti\sanhao\textbf}      % “参考文献”字样的字体
-\newcommand{\refbodyfont}{\songti\wuhao\normalfont}          % 参考文献字体
-\newcommand{\thanktitlefont}{\heiti\sanhao\textbf}    % “致谢”字样的字体
-\newcommand{\appendixtitlefont}{\heiti\sanhao\textbf} % “附录”字样的字体
-\newcommand{\translationtitlefont}{\heiti\sanhao\textbf} % “外文译文,外文资料”字样的字体
+% Named fonts
+\newcommand{\thesistitlefont}{\centering\heiti\sanhao\bfseries}
+\newcommand{\thesistitleenfont}{\centering\sanhao\bfseries}
+\newcommand{\abszhname}{\heiti\xiaosanhao\bfseries}
+\newcommand{\abszhkey}{\heiti\xiaosihao\bfseries}
+\newcommand{\abszhkeys}{\songti\xiaosihao\normalfont}
+\newcommand{\absenname}{\xiaosanhao\bfseries}
+\newcommand{\absenkey}{\xiaosihao\bfseries}
+\newcommand{\absenkeys}{\xiaosihao\normalfont}
+\newcommand{\headfont}{\songti\xiaowuhao\normalfont}
+\newcommand{\pagefont}{\songti\xiaowuhao\normalfont}
+\newcommand{\toctitlefont}{\heiti\sanhao\bfseries}
+\newcommand{\tocchapterfont}{\heiti\xiaosihao\bfseries}
+\newcommand{\tocsectionfont}{\songti\xiaosihao\normalfont}
+\newcommand{\tocsubsectionfont}{\songti\xiaosihao\normalfont}
+\newcommand{\textchapterfont}{\heiti\sanhao\bfseries}
+\newcommand{\textsectionfont}{\heiti\sihao\bfseries}
+\newcommand{\textsubsectionfont}{\heiti\xiaosihao\bfseries}
+\newcommand{\footnotefont}{\songti\wuhao\normalfont}
+\newcommand{\ftcaptionfont}{\kaishu\wuhao\normalfont}
+\newcommand{\reftitlefont}{\heiti\sanhao\bfseries}
+\newcommand{\refbodyfont}{\songti\wuhao\normalfont}
+\newcommand{\thanktitlefont}{\heiti\sanhao\bfseries}
+\newcommand{\appendixtitlefont}{\heiti\sanhao\bfseries}
 
-% Word spacing
-% Usage: \ziju{spacing} spacing can be 1em, 10pt, etc.
-%\newcommand{\ziju}[1]{\renewcommand{\CJKglue}{\hskip #1}}
+% Page layout
+\geometry{
+    paper=a4paper,
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm,
+    headheight=15pt,
+    headsep=0.5cm,
+    footskip=0.9cm
+}
 
-%%%%%% Page Style %%%%%%
-
-% Margin
-% FIXME: Not very precise, but meets the need of the Word template.
-% \usepackage[left=2.5cm,margin=2.5cm,headheight=1.5cm,footskip=1.5cm]{geometry}
-\usepackage[paper=a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm,headheight=1.5cm,headsep=0.6cm,footskip=0.5cm]{geometry}
-
+% Global text layout
+\setstretch{1.5}
+\setlength{\parindent}{2em}
 
 % Header and footer
-\usepackage{fancyhdr}
-
 \fancypagestyle{mainmatter}{%
-\fancyhf{} % clear all header and footer fields
-\fancyhead[C]{\headfont{北京邮电大学本科毕业设计（论文）}}
-\fancyfoot[C]{\footnotefont{\thepage}}
-\renewcommand{\headrulewidth}{0.8pt}
+    \fancyhf{}
+    \fancyhead[C]{\headfont 北京邮电大学本科毕业设计（论文）}
+    \fancyfoot[C]{\pagefont \thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
 }
 
 \fancypagestyle{frontmatter}{%
-\fancyhf{} % clear all header and footer fields
-\fancyhead{}
-\fancyfoot[C]{\footnotefont{\thepage}}
-\renewcommand{\headrulewidth}{0pt}
+    \fancyhf{}
+    \fancyhead{}
+    \fancyfoot[C]{\pagefont \Roman{page}}
+    \renewcommand{\headrulewidth}{0pt}
 }
 
-% Bookmark  (Chinese bookmark supported)
-\usepackage{url}
+% Hyperref and URL handling
 \def\UrlFont{}
-\usepackage[xetex, pdfstartview=FitH, 
-bookmarksnumbered=true, bookmarksopen=true, bookmarksdepth=2, colorlinks=true, 
-pdfborder=001, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}  % 修改bookmarksdepth指定书签层级
-% Deal with line breaking in url
+
 \makeatletter
 \def\UrlAlphabet{%
     \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
@@ -130,267 +145,218 @@ pdfborder=001, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}  % �
 \g@addto@macro{\UrlBreaks}{\UrlAlphabet}
 \g@addto@macro{\UrlBreaks}{\UrlDigits}
 \makeatother
-% Eliminate warnings about non-string commands not shown in PDF bookmarks. If you use more commands in section titles or chapter titles, you can add the commands here.
-\pdfstringdefDisableCommands{
-    \def \quad{}
-    \def \qquad{}
+
+\pdfstringdefDisableCommands{%
+    \def\quad{}
+    \def\qquad{}
 }
-
-% Line spread
-\renewcommand{\baselinestretch}{1.30}
-% \setlength{\itemsep}{-5pt} % item seperate too wide
-
-% Indentation
-%\usepackage{indentfirst} 
-%\setlength{\parindent}{2em} % indent 2em
 
 % Footnote
-% Usage: \footnote{Your Text}
-\usepackage[perpage]{footmisc}
-% \usepackage{footnpag} % footnote per page
-% \usepackage{footnote}
-% \let\ftnt=\footnote
-% \renewcommand{\footnote}[1]{\ftnt{\footnotefont{#1}}}
+\newcommand{\buptcirclednumber}[1]{%
+    \ifcase#1\or ①\or ②\or ③\or ④\or ⑤\or ⑥\or ⑦\or ⑧\or ⑨\or ⑩\or
+    ⑪\or ⑫\or ⑬\or ⑭\or ⑮\or ⑯\or ⑰\or ⑱\or ⑲\or ⑳%
+    \else \textcircled{\scriptsize #1}%
+    \fi
+}
+\renewcommand{\thefootnote}{\buptcirclednumber{\value{footnote}}}
+\setlength{\footnotesep}{12pt}
+\renewcommand{\footnotelayout}{\footnotefont\setstretch{1}\selectfont}
 
-% No Number Footnote
-% Especially for stating which project the thesis is supported
-% Usage: \blfootnote{Your Text}
-\usepackage{lipsum}
-\newcommand\blfootnote[1]{% 
-\begingroup
-\renewcommand\thefootnote{}\footnote{#1}% 
-\addtocounter{footnote}{-1}% 
-\endgroup 
+% No-number footnote
+\newcommand\blfootnote[1]{%
+    \begingroup
+    \renewcommand\thefootnote{}\footnote{#1}%
+    \addtocounter{footnote}{-1}%
+    \endgroup
 }
 
-%%%%%% Detail style %%%%%%
-% Underline
-% Usage: \ul[length]{<text>}
+% Underline helper
 \makeatletter
 \newcommand\ul[2][4cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
 \makeatother
-\def\ULthickness{1.1pt}%
+\def\ULthickness{1.1pt}
 
-% Content style
-\setcounter{secnumdepth}{3} % let subsubsection have number
-\setcounter{tocdepth}{3} % let subsubsection appear in CONTENTS
-\usepackage{titletoc}
-\newif{\ifpagenumber}
-\pagenumbertrue
-\renewcommand\contentsname{\centerline{\toctitlefont{目\qquad{}录}}}
-\titlecontents{chapter}[0em]{\tocchapterfont\vspace{0.4mm}} {%
-    \ifpagenumber \CTEXnumber{\CJKsection}{\thecontentslabel}{第\CJKsection{章}\quad{}} \fi}{%
-    } {%
-    \ifpagenumber \hspace{.5em}\titlerule*[6pt]{$\cdot$}\contentspage\fi}
-\titlecontents{section}[1em]{\tocsectionfont\vspace{0.4mm}}{%
-    \thecontentslabel\quad{}}{}{%
-    \ifpagenumber \hspace{.5em}\titlerule*[6pt]{$\cdot$}\contentspage\fi}%
-\titlecontents{subsection}[2em]{\tocsubsectionfont\vspace{0.4mm}}{%
-    \thecontentslabel\quad{}}{}{%
-    \ifpagenumber \hspace{.5em}\titlerule*[6pt]{$\cdot$}\contentspage\fi}%
-\titlecontents{subsubsection}[3em]{\tocsubsubsectionfont\vspace{0.4mm}}{%
-    \thecontentslabel\quad{}}{}{%
-    \ifpagenumber \hspace{.5em}\titlerule*[6pt]{$\cdot$}\contentspage\fi}%
-\makeatletter % Content Page style
+% Table of contents
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\renewcommand\contentsname{\centerline{\toctitlefont 目\qquad 录}\vspace{2\baselineskip}}
+\titlecontents{chapter}[0pt]{\tocchapterfont\addvspace{4pt}}{第\thecontentslabel 章\quad}{}{
+    \titlerule*[6pt]{.}\contentspage}
+\titlecontents{section}[2em]{\tocsectionfont}{\thecontentslabel\quad}{}{
+    \titlerule*[6pt]{.}\contentspage}
+\titlecontents{subsection}[4em]{\tocsubsectionfont}{\thecontentslabel\quad}{}{
+    \titlerule*[6pt]{.}\contentspage}
+
+% Page-numbering modes
+\makeatletter
 \renewcommand\frontmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi%
     \@mainmatterfalse%
-    \pagenumbering{Roman}% Roman style page number
-    \pagestyle{frontmatter}
-    }
-\makeatother%
-
-\makeatletter % Content Page style
+    \pagenumbering{Roman}%
+    \pagestyle{frontmatter}%
+}
 \renewcommand\mainmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi%
     \@mainmattertrue%
-    \pagenumbering{arabic}% Arabic style page number
-    \pagestyle{mainmatter}
-    }
-\makeatother%
-
-\makeatletter % Translation Page style
+    \pagenumbering{arabic}%
+    \pagestyle{mainmatter}%
+}
 \renewcommand\backmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi%
     \@mainmatterfalse%
-    \pagestyle{empty}
+    \pagestyle{empty}%
 }
-\makeatother%
+\makeatother
 
-% Text style
-\usepackage{titlesec}
-\titleformat{\chapter}[hang]{\textchapterfont}{第\chinese{chapter}章}{1em}{}
-\titlespacing{\chapter}{0pt}{-20pt}{12pt} % 缩短章节标题的上边距
-\titleformat{\section}{\textsectionfont}{\thesection}{1em}{}
-\titleformat{\subsection}{\textsubsectionfont}{\qquad{}\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\textsubsubsectionfont}{\qquad{}\thesubsubsection}{1em}{}
+% Titles
+\titleformat{\chapter}[block]{\filcenter\textchapterfont}{第\chinese{chapter}章\quad}{0pt}{}
+\titlespacing*{\chapter}{0pt}{0pt}{\baselineskip}
+\titleformat{name=\chapter, numberless}[block]{\filcenter\textchapterfont}{}{0pt}{}
+\titlespacing*{name=\chapter, numberless}{0pt}{0pt}{\baselineskip}
+\titleformat{\section}{\textsectionfont}{\thesection\quad}{0pt}{}
+\titlespacing*{\section}{0pt}{0.5\baselineskip}{0.5\baselineskip}
+\titleformat{\subsection}{\textsubsectionfont}{\hspace{2em}\thesubsection\quad}{0pt}{}
+\titlespacing*{\subsection}{0pt}{0.5\baselineskip}{0.5\baselineskip}
 
 % Reference style
-% \usepackage[numbers,sort&compress]{natbib}
-\usepackage[super,numbers,sort&compress]{natbib}
-%\usepackage[backend=biber,texencoding=utf8,bibencoding=utf8]{biblatex}
-\renewcommand\bibname{\centerline{\reftitlefont{参考文献}}}
-%\renewcommand{\citet}[1]{\textsuperscript{\cite{#1}}}
+\usepackage[super, numbers, sort&compress]{natbib}
+\renewcommand\bibname{\centerline{\reftitlefont 参考文献}}
 \setcitestyle{square}
-\setlength{\bibsep}{0.2em}
+\setlength{\bibsep}{0pt}
+\setlength{\bibhang}{0.6cm}
+\AtBeginEnvironment{thebibliography}{\refbodyfont\setstretch{1.5}\selectfont}
 
-% Appendix
-% TODO: this needs imporvement
-\usepackage{appendix}
-
-%% Some tweaking/features/styles
-
-% Figure & Table
-\usepackage{caption}
-\usepackage[position=t,singlelinecheck=off]{subfig}
-
-% \renewcommand\thesubfigure{\Alph{subfigure}}
-
-\renewcommand{\captionfont}{\ftcaptionfont}
-\renewcommand{\captionlabelfont}{\ftcaptionfont}
-\DeclareCaptionLabelSeparator{twospace}{ ~}
-\captionsetup{labelsep=twospace}  %去掉图1：后冒号
+% Figure and table captions
+\DeclareCaptionFont{buptcaption}{\kaishu\wuhao}
+\captionsetup{
+    font={buptcaption, stretch=1.5},
+    justification=centering,
+    skip=0.5\baselineskip
+}
+\captionsetup[figure]{labelsep=space}
+\captionsetup[table]{labelsep=quad}
 \renewcommand{\tablename}{表}
-\renewcommand{\thetable}{~\arabic{chapter}-\arabic{table}~}
+\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
 \renewcommand{\figurename}{图}
-\renewcommand{\thefigure}{~\arabic{chapter}-\arabic{figure}~}
-\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}~}
-% 外文文献中表、图、公式、代码编号重置
-\newcommand{\newtranschapter}{\thispagestyle{empty}\addtocounter{chapter}{1}\setcounter{table}{0}\setcounter{equation}{0}\setcounter{figure}{0}\setcounter{lstlisting}{0}}
+\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
 
-% single figure tweaking
-% New figure environment
-% Usage: \buptfigure[scale]{figure path}{caption}{label}
-\usepackage{graphicx} % graphic package
-\newcommand{\buptfigure}[4][width=11cm]{%
-\begin{figure}[!htbp]%
-    \centering % If you'd like to use center environment here, be advised that it will add extra white space at its top and bottom. So \centering is a better default option.
-%    \begin{center}
+% Figure helper
+\newcommand{\buptfigure}[4][width=0.7\textwidth]{%
+    \begin{figure}[!htbp]%
+        \centering
         \includegraphics[#1]{#2}%
-%    \end{center}
-    \caption{#3}%
-    \label{#4}
-\end{figure}}
+        \caption{#3}%
+        \label{#4}%
+    \end{figure}%
+}
 
-% table tweaking
-% New table environment
-% Usage: \begin{bupttable}{caption}{label} 
-%            <normal table>
-%        \end{bupttable}
-\usepackage{array,booktabs,multirow} % multirow, multicolumn and more professional format support
-\usepackage{tabularx} % deal with text wrapping in tables
+% Table helpers
 \newenvironment{bupttable}[2]{%
-\begin{table}[!htbp]%
-    \centering%
-    \renewcommand{\arraystretch}{1.38}%
-    \setlength{\abovecaptionskip}{0pt}%
-    \setlength{\belowcaptionskip}{10pt}%
-    \caption{#1}%
-    \label{#2}}{%
-\end{table}}%
+    \begin{table}[!htbp]%
+        \centering%
+        \renewcommand{\arraystretch}{1.25}%
+        \setlength{\abovecaptionskip}{0.5\baselineskip}%
+        \setlength{\belowcaptionskip}{0.5\baselineskip}%
+        \caption{#1}%
+        \label{#2}%
+}{%
+    \end{table}%
+}
 
-% longtable tweaking
-% New longtable environment
-% Usage: \begin{buptlongtable}{alignment}{caption}{label}
-%            <normal longtable>
-%        \end{buptlongtable}
-\usepackage{longtable}
-\newenvironment{buptlongtable}[3]{
-    \renewcommand{\arraystretch}{1.38}%
-    \setlength{\abovecaptionskip}{0pt}%
-    \setlength{\belowcaptionskip}{10pt}%
+\newenvironment{buptlongtable}[3]{%
+    \renewcommand{\arraystretch}{1.25}%
+    \setlength{\abovecaptionskip}{0.5\baselineskip}%
+    \setlength{\belowcaptionskip}{0.5\baselineskip}%
     \begin{longtable}{#1}
         \caption{#2}
         \label{#3} \\
-    }{
-\end{longtable}}
+}{%
+    \end{longtable}%
+}
 
-% equation tweaking
-\usepackage{amssymb}
-\usepackage{bm} % 加粗使用
-\usepackage{amsmath,delarray,bm,mathtools}
-\newtagform{newtag}[]{式（}{）} %定义公式编号样式
-\usetagform{newtag}
+% Algorithm environment in three-line-table style
+\newenvironment{buptalgorithm}[2]{%
+    \begin{table}[!htbp]
+        \centering
+        \setlength{\abovecaptionskip}{0.5\baselineskip}
+        \setlength{\belowcaptionskip}{0.5\baselineskip}
+        \caption{#1}
+        \label{#2}
+        \begin{tabular}{@{}p{\textwidth}@{}}
+            \toprule
+            \begin{minipage}{\linewidth}
+                \wuhao\setstretch{1.2}\selectfont
+                \renewcommand{\algorithmicrequire}{\textbf{输入：}}
+                \renewcommand{\algorithmicensure}{\textbf{输出：}}
+                \begin{algorithmic}[1]
+}{%
+                \end{algorithmic}
+            \end{minipage}\\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+}
 
+% Listings
+\lstset{
+    basicstyle=\ttfamily\wuhao,
+    extendedchars=true,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!30!black},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    captionpos=t,
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=single,
+    numbers=left,
+    numberbychapter=true,
+    escapeinside={\%*}{*)}
+}
+\renewcommand{\lstlistingname}{代码}
+\makeatletter
+\AtBeginDocument{%
+    \renewcommand\thelstlisting{\ifnum\c@chapter>\z@ \thechapter-\fi\@arabic\c@lstlisting}%
+}
+\makeatother
 
-% Theorem & definition
-
-
-% \usepackage{amsthm}
+% Theorem-like environments
 \newtheorem{definition}{定义}[chapter]
 \newtheorem{theorem}{定理}[chapter]
 \newtheorem{axiom}{公理}[chapter]
 \newtheorem{lemma}{引理}[chapter]
-\newtheorem{proposition}{命题}[chapter] 
+\newtheorem{proposition}{命题}[chapter]
 \newtheorem{corollary}{推论}[chapter]
 
-% Algorithm
-\usepackage{algorithm}  
-\usepackage{algorithmicx}  
-\usepackage{algpseudocode}
-
-% Code 
-\usepackage{listings}
-\usepackage{xcolor}
-\lstset{
-    basicstyle=\ttfamily\wuhao, %五号等宽字体
-    extendedchars=true,
-    keywordstyle=\color{blue},
-    commentstyle=\color{green!30!black}, 
-    showspaces=false,          % 显示空格
-    showstringspaces=true,    % 字符串中显示空格
-    showtabs=false,            % 显示 TAB
-    tabsize=2,                 % TAB 被当作两个空格
-    captionpos=t,              % 标题位置
-    breaklines=true,           % 自动断行
-    breakatwhitespace=true,   
-    basewidth={0.5em,0.35em},
-    frame=single,              %单线边框，注释掉则无边框
-    numbers=left,               %行号位于左侧
-    numberbychapter=true,
-%    xleftmargin=.5em,
-%    xrightmargin=.5em,
-%    aboveskip=1ex,
-%    columns=flexible,        % 如果不指定等宽字体用这个
-%    mathescape,
-    escapeinside={\%*}{*)}
-}
-
-\renewcommand{\lstlistingname}{\kaishu{代码}}
-\makeatletter
-\AtBeginDocument{%
-  \renewcommand \thelstlisting
-       {\ifnum \c@chapter>\z@ \thechapter-\fi \@arabic\c@lstlisting}%
-}
-\makeatother
-
-
-% insert PDF
-\usepackage[final]{pdfpages}
-
-% insert blank page
+% Blank page helper for optional imported PDFs
 \makeatletter
 \newcommand\blankmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi%
     \@mainmatterfalse%
-    \pagestyle{empty}}%
-\makeatother%
+    \pagestyle{empty}%
+}
+\makeatother
 
-% No page number environment for appendix
-% \newenvironment{nopagenumber}{%
-%     \titleformat{\chapter}[hang]{\textchapterfont}{}{1em}{} %
-%     \setcounter{secnumdepth}{0}%
-%     \addtocontents{toc}{%
-% 	\protect\setcounter{tocdepth}{0}%
-% 	\protect\pagenumberfalse%
-% 	\ignorespaces}}{%
-%     \setcounter{secnumdepth}{3}%
-%     \addtocontents{toc}{%
-%     \protect\setcounter{tocdepth}{3}%
-% 	\protect\pagenumbertrue%
-%     \ignorespaces}}
-% List environment config
-\usepackage[inline]{enumitem}
-% Uncomment the two lines below if you want an list environment to share the same indent with a paragraph and no extra blank before, in or after the list.
-%\setlist[itemize]{labelindent=\parindent,leftmargin=*,noitemsep,topsep=0pt}
-%\setlist[enumerate]{labelindent=\parindent,leftmargin=*,noitemsep,topsep=0pt,label={\arabic*)}} % Modify the label format by yourself if you do not like 1), 2), ... here.
+% Appendix helper
+\newcounter{appendixno}
+\newcommand{\buptappendix}[1]{%
+    \refstepcounter{appendixno}%
+    \setcounter{figure}{0}%
+    \setcounter{table}{0}%
+    \setcounter{equation}{0}%
+    \setcounter{lstlisting}{0}%
+    \renewcommand{\thefigure}{附\arabic{appendixno}-\arabic{figure}}%
+    \renewcommand{\thetable}{附\arabic{appendixno}-\arabic{table}}%
+    \renewcommand{\theequation}{附\arabic{appendixno}-\arabic{equation}}%
+    \renewcommand{\thelstlisting}{附\arabic{appendixno}-\arabic{lstlisting}}%
+    \chapter*{附录\arabic{appendixno}\quad #1}%
+    \phantomsection%
+    \addcontentsline{toc}{chapter}{附录\arabic{appendixno}\quad #1}%
+}
+
+% List defaults
+\setlist[itemize]{leftmargin=2em}
+\setlist[enumerate]{leftmargin=2em}

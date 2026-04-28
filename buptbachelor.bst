@@ -1677,11 +1677,11 @@ FUNCTION {format.crossref.editor}
 { editor #1 "{ll }{f{~}}" format.name$
   editor num.names$ duplicate$
   #2 >
-    { pop$ " et~al." * }
+    { pop$ bbl.etal * }
     { #2 <
 	'skip$
 	{ editor #2 "{ll }{f{~}}" format.name$ "others" =
-            { " et~al." * }
+            { bbl.etal * }
             { " and " * editor #2 "{ll }{f{~}}" format.name$ * }
 	  if$
 	}
@@ -1922,6 +1922,20 @@ FUNCTION {format.address.school.year} {
 %     }
 %   if$
 % }
+
+FUNCTION {format.title.type}
+{ title empty$
+    { "" }
+    { new.block
+      title
+      type empty$
+        { "" }
+        { "~[" type * "]" * }
+      if$
+      *
+    }
+  if$
+}
 
 FUNCTION {format.note} {
   note empty$
@@ -2383,13 +2397,13 @@ FUNCTION {misc}
 
   format.authors output
 %  title howpublished new.block.checkb
-  format.title output
+  format.title.type output
 %  howpublished new.block.checka
 %  howpublished output
 %  format.date output
   format.address output
   format.month.year output
-  format.pages "pages" output.warn
+  format.pages output
   format.url output
 %  new.block
   format.note output
