@@ -67,6 +67,21 @@
 \newcommand{\scinum}[2]{{\rmfamily #1\texttimes10\textsuperscript{#2}}}
 \newcommand{\tnrrange}[2]{{\rmfamily [#1,#2]}}
 
+% The school format checker inspects embedded PDF fonts. These settings make
+% math-mode digits and common non-letter tokens follow the text math font more
+% reliably, reducing accidental Computer Modern font embedding in simple inline
+% parameter expressions such as $N=1024$.
+\MTnonlettersobeymathxx
+\MTeasynonlettersobeymathxx
+\makeatletter
+\newcommand{\bupt@mathdigit}[1]{\mathcode`#1=\numexpr\symmtoperatorfont*256+`#1\relax}
+\AtBeginDocument{%
+  \Mathastext
+  \bupt@mathdigit{0}\bupt@mathdigit{1}\bupt@mathdigit{2}\bupt@mathdigit{3}\bupt@mathdigit{4}%
+  \bupt@mathdigit{5}\bupt@mathdigit{6}\bupt@mathdigit{7}\bupt@mathdigit{8}\bupt@mathdigit{9}%
+}
+\makeatother
+
 % Font size helpers
 \newcommand{\chuhao}{\zihao{0}}
 \newcommand{\xiaochuhao}{\zihao{-0}}
@@ -89,29 +104,29 @@
 \renewcommand{\normalsize}{\xiaosihao\songti\normalfont}
 
 % Named fonts
-\newcommand{\thesistitlefont}{\centering\heiti\sanhao\bfseries}
-\newcommand{\thesistitleenfont}{\centering\sanhao\bfseries}
-\newcommand{\abszhname}{\heiti\xiaosanhao\bfseries}
-\newcommand{\abszhkey}{\heiti\xiaosihao\bfseries}
-\newcommand{\abszhkeys}{\songti\xiaosihao\normalfont}
-\newcommand{\absenname}{\xiaosanhao\bfseries}
-\newcommand{\absenkey}{\xiaosihao\bfseries}
-\newcommand{\absenkeys}{\xiaosihao\normalfont}
-\newcommand{\headfont}{\songti\xiaowuhao\normalfont}
-\newcommand{\pagefont}{\songti\xiaowuhao\normalfont}
-\newcommand{\toctitlefont}{\heiti\sanhao\bfseries}
-\newcommand{\tocchapterfont}{\heiti\xiaosihao\bfseries}
-\newcommand{\tocsectionfont}{\songti\xiaosihao\normalfont}
-\newcommand{\tocsubsectionfont}{\songti\xiaosihao\normalfont}
-\newcommand{\textchapterfont}{\heiti\sanhao\bfseries}
-\newcommand{\textsectionfont}{\heiti\sihao\bfseries}
-\newcommand{\textsubsectionfont}{\heiti\xiaosihao\bfseries}
-\newcommand{\footnotefont}{\songti\wuhao\normalfont}
-\newcommand{\ftcaptionfont}{\kaishu\wuhao\normalfont}
-\newcommand{\reftitlefont}{\heiti\sanhao\bfseries}
-\newcommand{\refbodyfont}{\songti\fontsize{10.5pt}{15.75pt}\selectfont}
-\newcommand{\thanktitlefont}{\heiti\sanhao\bfseries}
-\newcommand{\appendixtitlefont}{\heiti\sanhao\bfseries}
+\newcommand{\thesistitlefont}{\centering\normalfont\heiti\sanhao\bfseries}
+\newcommand{\thesistitleenfont}{\centering\normalfont\sanhao\bfseries}
+\newcommand{\abszhname}{\normalfont\heiti\xiaosanhao\bfseries}
+\newcommand{\abszhkey}{\normalfont\heiti\xiaosihao\bfseries}
+\newcommand{\abszhkeys}{\normalfont\songti\xiaosihao}
+\newcommand{\absenname}{\normalfont\xiaosanhao\bfseries}
+\newcommand{\absenkey}{\normalfont\xiaosihao\bfseries}
+\newcommand{\absenkeys}{\normalfont\xiaosihao}
+\newcommand{\headfont}{\normalfont\songti\xiaowuhao}
+\newcommand{\pagefont}{\normalfont\songti\xiaowuhao}
+\newcommand{\toctitlefont}{\normalfont\heiti\sanhao\bfseries}
+\newcommand{\tocchapterfont}{\normalfont\heiti\xiaosihao\bfseries}
+\newcommand{\tocsectionfont}{\normalfont\songti\xiaosihao}
+\newcommand{\tocsubsectionfont}{\normalfont\songti\xiaosihao}
+\newcommand{\textchapterfont}{\normalfont\heiti\sanhao\bfseries}
+\newcommand{\textsectionfont}{\normalfont\heiti\sihao\bfseries}
+\newcommand{\textsubsectionfont}{\normalfont\heiti\xiaosihao\bfseries}
+\newcommand{\footnotefont}{\normalfont\songti\fontsize{10.5pt}{15.75pt}\selectfont}
+\newcommand{\ftcaptionfont}{\normalfont\kaishu\fontsize{10.5pt}{15.75pt}\selectfont}
+\newcommand{\reftitlefont}{\normalfont\heiti\sanhao\bfseries}
+\newcommand{\refbodyfont}{\normalfont\songti\fontsize{10.5pt}{15.75pt}\selectfont}
+\newcommand{\thanktitlefont}{\normalfont\heiti\sanhao\bfseries}
+\newcommand{\appendixtitlefont}{\normalfont\heiti\sanhao\bfseries}
 
 % Page layout
 \geometry{
@@ -266,7 +281,7 @@
 \makeatother
 
 % Figure and table captions
-\DeclareCaptionFont{buptcaption}{\kaishu\wuhao\selectfont}
+\DeclareCaptionFont{buptcaption}{\normalfont\kaishu\fontsize{10.5pt}{15.75pt}\selectfont}
 \captionsetup{
     font={buptcaption, stretch=1.5},
     justification=centering,
