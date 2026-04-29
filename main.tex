@@ -68,13 +68,14 @@
 \end{tabular}
 
 \buptappendix{公式推导示例}
-设接收端获得的两个输入 LLR 分别为 $a$ 和 $b$，则 SC 译码中常用的 $f$ 函数近似形式可以表示为
+设接收端获得的两个输入 LLR 分别为 \tnrvar{a} 和 \tnrvar{b}，则 SC 译码中常用的 \tnrvar{f} 函数近似形式可以表示为
 
-\begin{equation}
-f(a,b)=\operatorname{sign}(a)\operatorname{sign}(b)\min(|a|,|b|)
-\end{equation}
+\begin{center}
+\refstepcounter{equation}
+\makebox[0.9\textwidth]{\tnrvar{f}(\tnrvar{a},\tnrvar{b}) = sign(\tnrvar{a}) sign(\tnrvar{b}) min(|\tnrvar{a}|,|\tnrvar{b}|)\hfill(\theequation)}
+\end{center}
 
-其中，$a$ 和 $b$ 表示当前层输入 LLR，$\operatorname{sign}(\cdot)$ 表示符号函数，$|\cdot|$ 表示绝对值。
+其中，\tnrvar{a} 和 \tnrvar{b} 表示当前层输入 LLR，sign(·) 表示符号函数，|·| 表示绝对值。
 
 \buptappendix{伦理声明示例}
 本文示例模板默认使用公开文献与示例性实验描述进行说明，不涉及个人隐私、医学影像、动物实验或其他需要单独伦理审批的敏感数据。若实际论文使用非公开或具有限制条件的数据，请在此处补充对应的伦理审查信息、审批编号和数据使用说明。
