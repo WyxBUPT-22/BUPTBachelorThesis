@@ -5,13 +5,12 @@
 * 修改: 盛强     <sqyx008@outlook.com>（信息与通信工程学院通信工程2014级）
 * 修改: Haixin Yu <name1e5s@qq.com>（计算机学院2017级）
 * 修改: Luzhan Yuan yuanluzhan@gmail.com (人工智能学院2021级)
-
+* 修改：Yuxin Wu wuyuxin55@bupt.edu.cn (信息与通信工程学院2022级)
 
 ## 发布记录
 
 初始上线日期: 2018/4/24  
-最新发行版日期: 2025/4/18
-
+最新发行版日期: 2026/4/29
 ### 欢迎在讨论区进行讨论
 
 > https://github.com/BYRIO/BUPTBachelorThesis/discussions
