@@ -39,7 +39,12 @@
 \phantomsection
 \addcontentsline{toc}{chapter}{参考文献}
 \bibliographystyle{buptbachelor}
-\refbodyfont{\bibliography{ref}}
+\makeatletter
+\let\buptorigbibitem\bibitem
+\renewcommand{\bibnumfmt}[1]{{\songti\setstretch{1.5}\fontsize{10.5pt}{15.75pt}\selectfont[#1]}}
+\renewcommand{\bibitem}[1]{\buptorigbibitem{#1}\songti\setstretch{1.5}\fontsize{10.5pt}{15.75pt}\selectfont}
+\makeatother
+\bibliography{ref}
 
 \cleardoublepage
 \chapter*{致谢}

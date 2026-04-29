@@ -52,6 +52,21 @@
 % Font family
 \setmainfont[Mapping=tex-text]{Times New Roman}
 
+% Use text glyphs in math mode so English letters, digits and punctuation
+% are emitted as Times New Roman instead of a separate math font family.
+\usepackage[italic]{mathastext}
+
+% Keep inline English/code-like text in正文 aligned with the required Roman font.
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{{\rmfamily #1}}
+\newcommand{\tnrvar}[1]{{\rmfamily\itshape #1}}
+\newcommand{\tnrsub}[2]{{\rmfamily\itshape #1}\textsubscript{{\rmfamily\itshape #2}}}
+\newcommand{\tnrsubrm}[2]{{\rmfamily\itshape #1}\textsubscript{#2}}
+\newcommand{\tnrsup}[2]{{\rmfamily\itshape #1}\textsuperscript{#2}}
+\newcommand{\EbNZero}{{\rmfamily\itshape E}\textsubscript{b}/{\rmfamily\itshape N}\textsubscript{0}}
+\newcommand{\scinum}[2]{{\rmfamily #1\texttimes10\textsuperscript{#2}}}
+\newcommand{\tnrrange}[2]{{\rmfamily [#1,#2]}}
+
 % Font size helpers
 \newcommand{\chuhao}{\zihao{0}}
 \newcommand{\xiaochuhao}{\zihao{-0}}
@@ -94,7 +109,7 @@
 \newcommand{\footnotefont}{\songti\wuhao\normalfont}
 \newcommand{\ftcaptionfont}{\kaishu\wuhao\normalfont}
 \newcommand{\reftitlefont}{\heiti\sanhao\bfseries}
-\newcommand{\refbodyfont}{\songti\wuhao\normalfont}
+\newcommand{\refbodyfont}{\songti\fontsize{10.5pt}{15.75pt}\selectfont}
 \newcommand{\thanktitlefont}{\heiti\sanhao\bfseries}
 \newcommand{\appendixtitlefont}{\heiti\sanhao\bfseries}
 
@@ -224,17 +239,41 @@
 \setcitestyle{square}
 \setlength{\bibsep}{0pt}
 \setlength{\bibhang}{0.6cm}
-\AtBeginEnvironment{thebibliography}{\refbodyfont\setstretch{1.5}\selectfont}
+\makeatletter
+\renewenvironment{thebibliography}[1]{%
+ \bibsection
+ \parindent\z@
+ \bibpreamble
+ \list{\@biblabel{\the\c@NAT@ctr}}{\@bibsetup{#1}\global\c@NAT@ctr\z@}%
+ \refbodyfont\setstretch{1.5}\selectfont
+ \ifNAT@openbib
+   \renewcommand\newblock{\par}%
+ \else
+   \renewcommand\newblock{\hskip .11em \@plus.33em \@minus.07em}%
+ \fi
+ \sloppy\clubpenalty4000\widowpenalty4000
+ \sfcode`\.\@m
+ \let\NAT@bibitem@first@sw\@firstoftwo
+ \let\citeN\cite \let\shortcite\cite
+ \let\citeasnoun\cite
+}{%
+ \bibitem@fin
+ \bibpostamble
+ \def\@noitemerr{\PackageWarning{natbib}{Empty `thebibliography' environment}}%
+ \endlist
+ \bibcleanup
+}
+\makeatother
 
 % Figure and table captions
-\DeclareCaptionFont{buptcaption}{\kaishu\wuhao}
+\DeclareCaptionFont{buptcaption}{\kaishu\wuhao\selectfont}
 \captionsetup{
     font={buptcaption, stretch=1.5},
     justification=centering,
     skip=0.5\baselineskip
 }
-\captionsetup[figure]{labelsep=space}
-\captionsetup[table]{labelsep=quad}
+\captionsetup[figure]{font={buptcaption,stretch=1.5},labelfont=buptcaption,textfont=buptcaption,labelsep=space}
+\captionsetup[table]{font={buptcaption,stretch=1.5},labelfont=buptcaption,textfont=buptcaption,labelsep=quad}
 \renewcommand{\tablename}{表}
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
 \renewcommand{\figurename}{图}

@@ -2,13 +2,13 @@
 
 \section{公式示例}
 
-设接收信号为 $y=x+n$，其中 $n$ 为加性高斯白噪声，则对数似然比可写为
+设接收信号为 \tnrvar{y}=\tnrvar{x}+\tnrvar{n}，其中 \tnrvar{n} 为噪声项，则示例性对数似然比可写为
 
 \begin{equation}
-LLR = \frac{2y}{\sigma^2}
+\text{LLR = 2\tnrvar{y}/\tnrvar{s}\textsuperscript{2}}
 \end{equation}
 
-其中，$y$ 表示接收符号，$\sigma^2$ 表示噪声方差。该类公式可用于演示编号、对齐以及文中引用方式。
+其中，\tnrvar{y} 表示接收符号，\tnrvar{s}\textsuperscript{2} 表示示例中的缩放量。该类公式可用于演示编号、对齐以及文中引用方式。
 
 \section{表格示例}
 
@@ -19,8 +19,8 @@ LLR = \frac{2y}{\sigma^2}
         \toprule
         参数名称 & 取值 & 说明 \\
         \midrule
-        码长 $N$ & 1024 & 示例中使用的块长度 \\
-        码率 $R$ & 0.5 & 示例中使用的码率 \\
+        码长 \tnrvar{N} & 1024 & 示例中使用的块长度 \\
+        码率 \tnrvar{R} & 0.5 & 示例中使用的码率 \\
         信道模型 & AWGN & 加性高斯白噪声信道 \\
         \bottomrule
     \end{tabular}
